@@ -25,4 +25,10 @@ urlpatterns = [
         name="page_tag",
         distill_func=get_all_tags,
     ),
+    distill_path(
+        "forms/",
+        views.AuthorCreateView.as_view(),
+        name="forms",
+        distill_file="django-dsfr/example-form.html",
+    ),
 ]

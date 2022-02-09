@@ -1,0 +1,11 @@
+{% include "django/forms/widgets/input.html" %}
+{% if widget.wrap_label %}
+	<label{% if widget.attrs.id %} for="{{ widget.attrs.id }}"{% endif %}>
+    	{% if widget.label.label %}
+        	{{ widget.label.label }}
+        	<span class="fr-hint-text">{{ widget.label.help_text }}</span>
+        {% else %}
+            {{ widget.label }}
+        {% endif %}
+	</label>
+{% endif %}

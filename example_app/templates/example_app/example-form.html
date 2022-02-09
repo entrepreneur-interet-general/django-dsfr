@@ -1,0 +1,15 @@
+{% extends 'dsfr/form-base.html' %}
+{% load static dsfr_tags %}
+
+{% block head-form %}
+    <h1>Exemple de formulaire</h1>
+{% endblock head-form %}
+
+{% block extra-formset-after %}
+    {% include "example-formset.html" %}
+{% endblock extra-formset-after %}
+    
+{% block foot-form %}
+    {% dsfr_button btn_submit %}
+{% endblock foot-form %}
+    

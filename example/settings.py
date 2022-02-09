@@ -16,6 +16,13 @@ import os
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
+#Paths to custom widget templates
+try:
+    WIDGET_TEMPLATES = os.path.join(os.getenv('VIRTUAL_ENV'), 'Lib/site-packages/dsfr/templates')
+except Exception:
+    WIDGET_TEMPLATES = ''
+
+
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
@@ -37,9 +44,14 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+    
+    #Installer tout ça
+    'django.forms',
     "dsfr",
     "example_app",
     "django_distill",
+    "widget_tweaks",
+    "crispy_forms",
 ]
 
 MIDDLEWARE = [
@@ -57,7 +69,12 @@ ROOT_URLCONF = "example.urls"
 TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
-        "DIRS": [],
+        "DIRS": [
+            #tout ça
+            str(BASE_DIR.joinpath('templates')),
+            os.path.join(BASE_DIR, 'example_app/templates/example_app'),
+            os.path.join(BASE_DIR, 'dsfr/templates'),
+        ],
         "APP_DIRS": True,
         "OPTIONS": {
             "context_processors": [
@@ -71,8 +88,13 @@ TEMPLATES = [
     },
 ]
 
+#Jquery
+#django-dynamic form
+
 WSGI_APPLICATION = "example.wsgi.application"
 
+#Ca aussi
+FORM_RENDERER = 'django.forms.renderers.TemplatesSetting'
 
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
