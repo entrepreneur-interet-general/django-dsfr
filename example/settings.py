@@ -16,14 +16,6 @@ import os
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-#Paths to custom widget templates
-try:
-    WIDGET_TEMPLATES = os.path.join(os.getenv('VIRTUAL_ENV'), 'Lib/site-packages/dsfr/templates')
-except Exception:
-    WIDGET_TEMPLATES = ''
-
-
-
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
 
