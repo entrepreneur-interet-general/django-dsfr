@@ -1,5 +1,8 @@
+<!-- Instead of extending base.html, extend formset-base.html -->
+<!-- Then, include this template in another template which extends form-base.html -->
 {% extends "dsfr/formset-base.html" %}
 
+<!-- You can add some information to the formset inside the blocks of formset-base.html -->
 {% block formset-title %}
 	{% if formset %}
 		<h3>Livres</h3>

@@ -187,12 +187,12 @@ def page_tests(request):
 
     return render(request, "example_app/tests.html", payload)
 
-
+#/!\ Example view for form and formsets
 class AuthorCreateView(CreateView):
     model = Author
     form_class = AuthorCreateForm
-    formset = BookCreateFormSet
-    template_name = 'example_app/example-form.html'
+    formset = BookCreateFormSet #/!\ Your formset factory
+    template_name = 'example_app/example-form.html' #/!\ Your template needs to extends form-base.html. If you use formset, you template needs to include another template which extends formset-base.html
     
     def get(self, request, *args, **kwargs):
         instance = None
@@ -222,6 +222,7 @@ class AuthorCreateView(CreateView):
         except Exception:
             self.object=None
     
+        #/!\ Pass your form, formset and helper to the context
         if self.request.POST:
             context['form'] = self.form_class(self.request.POST)
             context['formset'] = BookCreateFormSet(self.request.POST, self.request.FILES, instance=instance)
@@ -231,12 +232,14 @@ class AuthorCreateView(CreateView):
             context['formset'] = BookCreateFormSet(instance=instance)
             context['book_formhelper'] = book_formhelper
         
+        #/!\ Don't forget your dsfr button
         context['btn_submit'] = {
                                     "label": "Soumettre",
                                     "onclick": "",
                                     "type":"submit",
                                 }
         return context
+    
     
     def post(self, request, *args, **kwargs):
         instance = None
@@ -260,10 +263,10 @@ class AuthorCreateView(CreateView):
         with associated books and then redirects to a success page.
         """
         self.object = form.save()
-        formset.instance = self.object
+        formset.instance = self.object #/!\ Before saving formset, link it to the object created with the main form
         formset.save()
 
-        return HttpResponse('Success')
+        return HttpResponse('Success !')
 
     def form_invalid(self, form, formset):
         """
