@@ -46,6 +46,7 @@ Quick start
     ]
 
 4. In order to use forms and formsets, add to TEMPLATES in your settings.py::
+
 	"DIRS":[
 		...
 		os.path.join(BASE_DIR, 'dsfr/templates'),

@@ -45,6 +45,10 @@ INSTALLED_APPS = [
     "crispy_forms",
 ]
 
+#/!\ If not installed, you need to install with pip:
+#django-widget-tweaks
+#django-crispy-forms
+
 #/!\ It is also necessary to have Jquery in static files
 #/!\ and django-dynamic-formset from https://github.com/elo80ka/django-dynamic-formset to use formsets.
 
