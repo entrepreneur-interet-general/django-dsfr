@@ -16,7 +16,6 @@ import os
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
 
@@ -27,9 +26,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
-
 # Application definition
-
 INSTALLED_APPS = [
     "django.contrib.admin",
     "django.contrib.auth",
@@ -37,10 +34,23 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+    
     "dsfr",
     "example_app",
     "django_distill",
+    
+    #/!\ In order to use forms and formsets, it is necessary to install these
+    'django.forms',
+    "widget_tweaks",
+    "crispy_forms",
 ]
+
+#/!\ If not installed, you need to install with pip:
+#django-widget-tweaks
+#django-crispy-forms
+
+#/!\ It is also necessary to have Jquery in static files
+#/!\ and django-dynamic-formset from https://github.com/elo80ka/django-dynamic-formset to use formsets.
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
@@ -57,7 +67,11 @@ ROOT_URLCONF = "example.urls"
 TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
-        "DIRS": [],
+        "DIRS": [
+            str(BASE_DIR.joinpath('templates')),
+            os.path.join(BASE_DIR, 'example_app/templates/example_app'),
+            os.path.join(BASE_DIR, 'dsfr/templates'), #/!\ In order to use radio button and checkboxes, it is necessary to fetch the custom widget templates
+        ],
         "APP_DIRS": True,
         "OPTIONS": {
             "context_processors": [
@@ -73,10 +87,11 @@ TEMPLATES = [
 
 WSGI_APPLICATION = "example.wsgi.application"
 
+#/!\ In order to use radio buttons and checkboxes, it is necessary to define this FORM_RENDERER
+FORM_RENDERER = 'django.forms.renderers.TemplatesSetting'
 
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
-
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.sqlite3",
@@ -87,7 +102,6 @@ DATABASES = {
 
 # Password validation
 # https://docs.djangoproject.com/en/3.2/ref/settings/#auth-password-validators
-
 AUTH_PASSWORD_VALIDATORS = [
     {
         "NAME": "django.contrib.auth.password_validation.UserAttributeSimilarityValidator",
@@ -106,7 +120,6 @@ AUTH_PASSWORD_VALIDATORS = [
 
 # Internationalization
 # https://docs.djangoproject.com/en/3.2/topics/i18n/
-
 LANGUAGE_CODE = "en-us"
 
 TIME_ZONE = "UTC"
@@ -120,11 +133,9 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
-
 STATIC_ROOT = os.path.join(BASE_DIR, "static")
 STATIC_URL = "django-dsfr/static/"
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
-
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"

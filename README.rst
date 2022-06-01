@@ -35,8 +35,29 @@ Quick start
         'dsfr',
         <your_app>
     ]
+	
+3. In order to use forms and formsets, add to INSTALLED_APPS in your settings.py::
 
-3. (Optional) Add the context processor to your settings.py and create an instance of "DsfrConfig" in the admin panel::
+	INSTALLED_APPS = [
+        ...
+        'django.forms',
+		"widget_tweaks",
+		"crispy_forms",
+    ]
+
+4. In order to use forms and formsets, add to TEMPLATES in your settings.py::
+
+	"DIRS":[
+		...
+		os.path.join(BASE_DIR, 'dsfr/templates'),
+	]
+
+5. In order to use forms and formsets, add to your settings.py::
+
+	FORM_RENDERER = 'django.forms.renderers.TemplatesSetting'
+
+
+6. (Optional) Add the context processor to your settings.py and create an instance of "DsfrConfig" in the admin panel::
 
     TEMPLATES = [
         {
@@ -51,6 +72,6 @@ Quick start
     ]
 
 
-4. Include the tags in your base.html file (see example file at https://github.com/entrepreneur-interet-general/django-dsfr/blob/main/example_app/templates/example_app/base.html)
+7. Include the tags in your base.html file (see example file at https://github.com/entrepreneur-interet-general/django-dsfr/blob/main/example_app/templates/example_app/base.html)
 
-5. Start the development server and visit http://127.0.0.1:8000/
+8. Start the development server and visit http://127.0.0.1:8000/

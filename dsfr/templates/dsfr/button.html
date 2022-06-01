@@ -3,6 +3,7 @@
   onclick="{{ self.onclick }}"
   {% if self.is_disabled %}disabled{% endif %}
   type="{{ self.type | default:'submit' }}"
+  name="{{ self.name | default:'' }}"
 >
   {{ self.label }}
 </button>

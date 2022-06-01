@@ -36,6 +36,8 @@ include = ["LICENSE", "README.rst", "dsfr/static/dsfr/dist/*/*.*"]
 Django = "^3.2.5"
 python = "^3.8"
 requests = "^2.26.0"
+django-widget-tweaks = "^1.4.11"
+django-crispy-forms = "^1.13.0"
 
 [tool.poetry.dev-dependencies]
 black = {version = "^21.7b0", allow-prereleases = true}
